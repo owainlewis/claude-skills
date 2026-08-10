@@ -33,6 +33,17 @@ Use for:
 
 ## Rules
 
+- Write for the intended reader. If the audience is not clear, assume an intelligent beginner.
+- Lead with the main point.
+- Simplify the language, not the idea.
+- Put one main idea in each sentence.
+- Explain ideas in the order the reader needs them.
+- Prefer plain words, but keep precise technical terms.
+- Define a term when it might be unfamiliar to the intended reader.
+- Use a real example, or clearly say when an example is made up. Never use a made-up example as proof.
+- Remove detail that does not help the reader understand or act.
+- Keep important facts, limits, and warnings.
+- Never make the writing childish, vague, or inaccurate.
 - No em dashes.
 - No purple prose.
 - No cliches.
@@ -71,7 +82,9 @@ Use for:
 
 - Can the reader picture it?
 - Does it say what they will have, do, see, or decide?
-- Would a smart 10-year-old understand it?
+- Could the intended reader understand it without needless effort?
+- Is the language simple while the meaning stays accurate?
+- Is each term that might be unfamiliar to the intended reader explained in plain words?
 - Would a real person say it out loud?
 - Did vague value become a concrete example?
 - Is there any slogan rhythm left?
