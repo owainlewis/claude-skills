@@ -14,6 +14,7 @@
 | `explain-visually` | Builds a responsive HTML explainer with source-grounded copy, teaching diagrams, and browser-verified layout. |
 | `compress` | Simplifies skills, prompts, and instructions to load-bearing verbs, nouns, constraints, examples, and checks. |
 | `feynman` | Explains one technical theme with mechanism-first sections, concrete examples, edge cases, and an exercise. |
+| `herdr-issue-coordinator` | **Experimental.** Sequences a batch of GitHub issues through separate Claude Code sessions, one per visible [Herdr](https://herdr.dev) tab, each with its own worktree, branch, and pull request. The coordinator owns all state and reads it from GitHub. Requires `herdr` 0.8.0+. |
 
 The software development workflow skills - `spec`, `plan`, `implement`, `task-to-pr`, `pr-to-ready`, and friends - live in [owainlewis/blueprint](https://github.com/owainlewis/blueprint).
 
@@ -44,7 +45,10 @@ In Claude Code:
 /explain-visually this repo
 /compress skills/compress/SKILL.md
 /feynman agent memory
+/herdr-issue-coordinator milestone v2.1
 ```
+
+`herdr-issue-coordinator` only runs inside a [Herdr](https://herdr.dev) session (`HERDR_ENV=1`) with `herdr` 0.8.0 or later. Naming it explicitly authorizes its workers to merge their own pull requests once every gate passes; an implicit match leaves them open.
 
 ## Add your own skills
 
