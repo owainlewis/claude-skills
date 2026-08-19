@@ -1,6 +1,6 @@
 # Contributing
 
-This repository stays useful by staying small. A new skill should solve a recurring job that the existing skills do not already cover.
+Add a skill only when it solves a recurring job that the existing skills do not cover.
 
 ## Quality bar
 

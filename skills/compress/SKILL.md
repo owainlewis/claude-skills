@@ -1,18 +1,18 @@
 ---
 name: compress
-description: "Reduce a prompt, specification, plan, skill, note, or brain dump to its smallest useful form without changing meaning or behaviour. Use when asked to compress, shorten, simplify, tighten, de-noise, de-duplicate, or make instructions more token-efficient. Preserve facts, constraints, examples, edge cases, and checks that affect the result."
+description: "Shorten a prompt, specification, plan, skill, note, or brain dump without changing its meaning or behaviour. Use when asked to compress, shorten, simplify, tighten, remove repetition, or use fewer tokens. Preserve facts, constraints, examples, edge cases, and checks that affect the result."
 ---
 
 # Compress
 
-Keep the meaning. Spend fewer words.
+Shorten the input without losing meaning.
 
 Use this for information and instructions, not ordinary prose polishing. Use `deslop` when voice and writing quality are the main problem.
 
 ## Process
 
 1. Identify the purpose and intended reader or agent.
-2. Extract the load-bearing content: facts, actions, inputs, outputs, constraints, defaults, examples, edge cases, checks, and stop conditions.
+2. Extract the required content: facts, actions, inputs, outputs, constraints, defaults, examples, edge cases, checks, and stop conditions.
 3. Remove repetition, throat-clearing, backstory, generic advice, motivational language, and structure that does not change understanding or behaviour.
 4. Replace vague phrases with a concrete instruction only when the source supports it. Otherwise cut them.
 5. Merge overlapping rules and place each fact once, where the reader needs it.

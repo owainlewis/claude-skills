@@ -1,37 +1,37 @@
 ---
 name: deslop
-description: "Remove AI writing patterns while preserving meaning and restoring a natural human voice. Use when drafting, rewriting, editing, or reviewing prose such as replies, emails, documentation, articles, lessons, scripts, marketing copy, and business writing. Return clean prose rather than an audit unless the user asks for analysis."
+description: "Remove AI writing patterns and make the result sound like it was written by a person. Use when drafting, rewriting, editing, or reviewing replies, emails, documentation, articles, lessons, scripts, marketing copy, or business writing. Preserve facts, meaning, and the writer's voice. Return revised text unless the user asks for analysis."
 ---
 
 # Deslop
 
-Make the writing sound like a person meant it.
+Make writing sound like it was written by a person.
 
 ## Process
 
 1. Identify the point, facts, intended reader, tone, and format.
 2. Find the AI patterns below.
 3. Rewrite the affected lines. Preserve meaning and useful detail.
-4. Restore voice. Removing bad patterns is only half the job.
-5. Read the result once as a sceptical human. Fix anything sterile, generic, or over-produced.
+4. Restore the writer's voice after removing the patterns.
+5. Read the result again. Fix anything stiff, generic, or more polished than the intended tone.
 6. Return the finished writing. Explain changes only when asked.
 
 ## Protect the source
 
 - Keep facts, numbers, citations, quotes, code, commands, paths, names, and technical terms accurate.
-- Keep the writer's level of formality, point of view, and useful quirks.
+- Keep the writer's level of formality, point of view, and distinctive wording.
 - Do not invent facts, sources, opinions, feelings, stories, or experience.
 - Change only what improves the writing.
 
 ## Restore a human voice
 
-- Preserve the writer's opinion instead of flattening everything into neutral balance.
+- Keep the writer's opinion. Do not turn it into a neutral list of pros and cons.
 - Use first person when the source or requested voice uses it.
-- Vary rhythm. Mix short sentences with longer ones that earn their length.
-- Keep specific, odd, funny, blunt, or slightly messy details when they carry voice.
-- Prefer a concrete reaction or observation to a polished generality.
-- Let the structure fit the thought. Do not package every idea into matching sections or lists.
-- When drafting without a source voice, write in plain conversational English. Be direct, calm, and specific.
+- Vary sentence length and rhythm.
+- Keep specific, odd, funny, blunt, or messy details that make the writing sound like the writer.
+- Prefer a concrete reaction or observation to a general statement.
+- Do not force every idea into matching sections or lists.
+- When the user provides no writing sample, use plain conversational English. Be direct, calm, and specific.
 
 ## Remove AI patterns
 
@@ -60,7 +60,7 @@ Make the writing sound like a person meant it.
 - Use "from X to Y" only for a real range.
 - Cut trailing `-ing` phrases that merely restate the sentence.
 - Pick one clear term and repeat it instead of cycling through synonyms.
-- State the conclusion and evidence instead of manufacturing a balanced debate.
+- Do not invent balance. State the conclusion and evidence.
 - Replace generic predictions with a specific plan, fact, or uncertainty.
 
 ### Abstract technical prose
@@ -74,7 +74,7 @@ Make the writing sound like a person meant it.
 
 ### Formatting and chatbot habits
 
-- Avoid em dashes. Use a period or comma rather than a substitute dash or a parenthetical escape hatch.
+- Avoid em dashes. Use a period or comma. Do not replace them with another dash or parentheses.
 - Use colons for a list, example, quote, or direct explanation, not as dramatic punctuation.
 - Use sentence case headings, straight quotes, and undecorated bullets.
 - Do not bold every name or use bold labels that repeat the sentence after them.
@@ -86,5 +86,5 @@ Make the writing sound like a person meant it.
 - Does the first sentence make the point?
 - Did any fact, meaning, or useful piece of voice disappear?
 - Does any line sound impressive without saying anything?
-- Is the prose too symmetrical, tidy, or neutral to sound lived-in?
+- Does the prose sound generic, over-structured, or needlessly neutral?
 - Can any remaining word go without weakening meaning or voice?

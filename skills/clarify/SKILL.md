@@ -1,11 +1,11 @@
 ---
 name: clarify
-description: "Turn a vague request, voice dump, rough plan, or half-written prompt into a self-contained prompt that a fresh agent can execute. Use when asked to clarify, refine, improve, tighten, or stress-test an agent task. Resolve safe defaults directly and ask one high-leverage question at a time only when the answer would materially change the work."
+description: "Turn a vague request, voice dump, rough plan, or half-written prompt into a self-contained prompt that a fresh agent can execute. Use when asked to clarify, refine, improve, tighten, or stress-test an agent task. Resolve safe defaults directly. Ask one question at a time only when the answer would materially change the work."
 ---
 
 # Clarify
 
-Turn messy intent into an executable prompt without turning clarification into a ceremony.
+Turn a rough request into a prompt another agent can execute.
 
 ## Choose a mode
 
@@ -19,9 +19,9 @@ Turn messy intent into an executable prompt without turning clarification into a
 2. For repository work, inspect discoverable context such as `AGENTS.md`, `CLAUDE.md`, `README.md`, the file tree, and relevant code before asking questions.
 3. Extract the goal, current state, inputs, outputs, constraints, scope boundaries, failure behaviour, and success checks.
 4. Resolve unambiguous references and project conventions from the available context.
-5. Use a sensible assumption when it is cheap to reverse and does not alter the substance of the task.
-6. Ask one question when no safe assumption exists. After the answer, check whether another material ambiguity remains.
-7. Return a prompt that reads cold. Do not refer to "our discussion" or information outside the prompt.
+5. Use a sensible assumption when the user can change it later without reworking the task.
+6. Ask one question when no safe assumption exists. After the answer, check whether another important decision remains.
+7. Include all context needed to execute the prompt. Do not refer to "our discussion" or information outside the prompt.
 
 ## Ask useful questions
 

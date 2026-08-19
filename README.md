@@ -2,9 +2,9 @@
 
 [![Validate](https://github.com/owainlewis/agent-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/owainlewis/agent-skills/actions/workflows/validate.yml)
 
-Five focused skills for clearer prompts, writing, and teaching.
+Five skills for prompts, writing, and teaching.
 
-This library is small by design. Each skill has one job, works across compatible agents, and is written to change behaviour rather than add more prompt noise.
+The repository contains five skills. Each solves a different problem and works with agents that support the Agent Skills format.
 
 ## Install
 
@@ -32,11 +32,11 @@ npx skills@latest update
 
 | Skill | Job | Use it for |
 |---|---|---|
-| [`deslop`](skills/deslop/SKILL.md) | Remove AI writing patterns without flattening the writer's voice. | Replies, emails, documentation, articles, lessons, scripts, and business writing. |
-| [`teach`](skills/teach/SKILL.md) | Turn an AI or technical topic into a tutorial that teaches one usable outcome. | Course lessons, technical articles, video scripts, workshops, newsletters, and standalone guides. |
+| [`deslop`](skills/deslop/SKILL.md) | Remove AI writing patterns while preserving meaning and voice. | Replies, emails, documentation, articles, lessons, scripts, and business writing. |
+| [`teach`](skills/teach/SKILL.md) | Explain how something works or teach the reader how to do it. | Course lessons, technical articles, video scripts, workshops, newsletters, and standalone guides. |
 | [`clarify`](skills/clarify/SKILL.md) | Turn a rough request into a prompt a fresh agent can execute. | Voice dumps, vague plans, incomplete tasks, and prompts that need scope or success criteria. |
-| [`compress`](skills/compress/SKILL.md) | Reduce information or instructions to their smallest useful form. | Prompts, specifications, plans, skills, notes, and brain dumps that cost too many tokens. |
-| [`explain-visually`](skills/explain-visually/SKILL.md) | Build a responsive HTML explainer around relationships that prose alone makes hard to see. | Architectures, flows, changes, comparisons, state transitions, and technical mental models. |
+| [`compress`](skills/compress/SKILL.md) | Shorten information or instructions without losing meaning or requirements. | Prompts, specifications, plans, skills, notes, and brain dumps that cost too many tokens. |
+| [`explain-visually`](skills/explain-visually/SKILL.md) | Build a responsive HTML page with clear writing and diagrams. | Architectures, flows, changes, comparisons, state transitions, and technical concepts. |
 
 Invoke a skill using your agent's normal syntax, such as `$teach` in Codex or `/teach` in Claude Code.
 
@@ -56,9 +56,9 @@ Use $explain-visually to show how this request moves through the system.
 
 ## How they fit together
 
-`clarify` fixes the brief. `teach` creates the tutorial. `explain-visually` handles the parts that need a picture. `deslop` removes AI habits from the prose. `compress` cuts accumulated instruction noise without losing meaning.
+Use `clarify` to write the prompt. Use `teach` to create the tutorial. Use `explain-visually` when it needs diagrams. Use `deslop` to remove AI writing patterns. Use `compress` to shorten instructions without losing requirements.
 
-You can use one skill alone or compose them. A typical tutorial workflow is `clarify` -> `teach` -> `deslop`, with `explain-visually` when a diagram would genuinely help.
+You can use one skill alone or combine them. A typical tutorial workflow is `clarify` -> `teach` -> `deslop`. Add `explain-visually` when the tutorial needs a diagram.
 
 ## Design principles
 

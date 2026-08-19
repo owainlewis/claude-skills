@@ -1,6 +1,6 @@
 # Repository instructions
 
-This repository contains a deliberately small set of portable Agent Skills.
+This repository contains five portable Agent Skills.
 
 When changing a skill:
 
