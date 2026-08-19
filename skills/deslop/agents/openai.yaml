@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deslop"
+  short_description: "Cut AI tells without flattening the writer's voice"
+  default_prompt: "Use $deslop to rewrite this in clear, natural language while preserving my meaning and voice."

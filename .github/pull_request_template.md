@@ -1,19 +1,23 @@
-## Summary
+## What changed
 
 <!-- What changed? -->
 
-## Why
+## Why this belongs
 
-<!-- Why was this needed? -->
+<!-- What recurring agent behaviour does this improve? Why is it distinct from the existing skills? -->
 
-## Test plan
+## Behaviour test
 
-<!-- List checks run. Write "Not run" with a reason when checks were not run. -->
+- Skill or files tested:
+- Prompt used:
+- Result:
 
-## Risks
+## Validation
 
-<!-- What could break or need close review? -->
+- [ ] `make validate`
+- [ ] Tested on a realistic prompt
+- [ ] README and `agents/openai.yaml` match the skill
 
-## Related issue
+## Risk
 
-<!-- Closes #... or write "None". -->
+<!-- What meaning, triggering, compatibility, or established behaviour could regress? -->
