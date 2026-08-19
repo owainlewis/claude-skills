@@ -1,0 +1,4 @@
+interface:
+  display_name: "Explain visually"
+  short_description: "Build clear, responsive visual explainers"
+  default_prompt: "Use $explain-visually to turn this source material into a self-contained visual HTML explainer."

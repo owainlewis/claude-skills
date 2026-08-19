@@ -1,0 +1,4 @@
+interface:
+  display_name: "Compress"
+  short_description: "Shorten instructions without changing their meaning"
+  default_prompt: "Use $compress to shorten this without losing facts, constraints, meaning, or useful voice."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Teach"
+  short_description: "Turn AI topics into clear, useful tutorials"
+  default_prompt: "Use $teach to turn this AI topic into a practical tutorial for an intelligent beginner."

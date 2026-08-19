@@ -1,80 +1,70 @@
 ---
 name: clarify
-description: "Turns vague, messy, voice-dictated, or multi-part asks into a self-contained prompt a fresh agent can execute. Use when the user asks to clarify, stress-test, tighten a plan, or resolve references like \"the thing\". Interviews one question at a time, then outputs a final prompt."
-user-invocable: true
-argument-hint: "<the messy ask or plan to clarify>"
+description: "Turn a vague request, voice dump, rough plan, or half-written prompt into a self-contained prompt that a fresh agent can execute. Use when asked to clarify, refine, improve, tighten, or stress-test an agent task. Resolve safe defaults directly. Ask one question at a time only when the answer would materially change the work."
 ---
 
 # Clarify
 
-Turn a vague ask into a reusable `Final prompt:` block.
-Always emit `Final prompt:` before doing work unless the user explicitly says `just do it`, `just run it`, or `skip the prompt`.
+Turn a rough request into a prompt another agent can execute.
 
-## Workflow
+## Choose a mode
 
-1. Read the input and discoverable context: `AGENTS.md`, `CLAUDE.md`, `README.md`, file tree, relevant code.
-2. Emit `Cleaned ask:` only when the raw ask is noisy enough to obscure intent.
-3. Ask one unresolved decision at a time.
-4. Include a recommended answer and one-line reason with each question.
-5. After each answer, re-check for new ambiguity.
-6. Stop asking when a fresh agent could execute the prompt without more context, or when the user says to write it.
-7. Emit one self-contained block under `Final prompt:`.
+- Refine directly when the goal is clear and missing details have safe defaults.
+- Interview when one unresolved choice would materially change behaviour, data, security, compatibility, cost, output, or proof.
+- Execute the clarified prompt only when the user explicitly asks to run it or says "just do it."
 
-Question format:
+## Process
 
-```md
-**Q:** <question>
-**My recommendation:** <answer> - <one-line reason>
+1. Read the request and any referenced material.
+2. For repository work, inspect discoverable context such as `AGENTS.md`, `CLAUDE.md`, `README.md`, the file tree, and relevant code before asking questions.
+3. Extract the goal, current state, inputs, outputs, constraints, scope boundaries, failure behaviour, and success checks.
+4. Resolve unambiguous references and project conventions from the available context.
+5. Use a sensible assumption when the user can change it later without reworking the task.
+6. Ask one question when no safe assumption exists. After the answer, check whether another important decision remains.
+7. Include all context needed to execute the prompt. Do not refer to "our discussion" or information outside the prompt.
+
+## Ask useful questions
+
+Ask about decisions such as:
+
+- which input, file, directory, system, or audience is in scope
+- what output must exist, where it belongs, and whether it may overwrite anything
+- required behaviour for bad input, missing data, network failure, or partial success
+- tradeoffs that change product behaviour, security, compatibility, cost, or architecture
+- the observable result or check that proves completion
+
+Do not ask about cosmetic choices, conventions the repository answers, details already supplied, or preferences with an obvious low-risk default.
+
+Use this shape:
+
+```text
+Question: <one decision>
+Recommendation: <answer> because <short reason>.
 ```
 
-## Ask About
+## Write the final prompt
 
-- Inputs: file, glob, directory, required args.
-- Outputs: location, naming, overwrite behavior.
-- Failure modes: network errors, missing files, bad input.
-- Scope edges: formats, environments, out-of-scope work.
-- Hidden decisions: defaults the agent would otherwise invent.
-- Success criteria: how the user knows it worked.
+Include only what changes execution:
 
-Do not ask about:
+- goal
+- relevant context and current state
+- exact inputs and outputs
+- in-scope and out-of-scope work
+- constraints and safe assumptions
+- required failure behaviour
+- success criteria and verification
 
-- Cosmetic choices.
-- Project conventions the repo answers.
-- Details already clear in the ask.
+Prefer positive instructions. Resolve contradictions or state which instruction wins. Use numbered steps only when order matters. Add `[NEEDS: <detail>]` only when the missing value cannot be safely assumed and the user has asked you to stop interviewing.
 
-## Final Prompt Contract
+Return:
 
-Include:
-
-- Goal in one sentence.
-- Exact file path or directory.
-- Inputs and outputs.
-- Dependencies, tools, env vars, and conventions.
-- Failure behavior.
-- Success criteria.
-- Out of scope, when it prevents drift.
-
-The prompt must read cold.
-No references to "what we discussed" or "the choices above".
-
-## Example Shape
-
-```md
+```text
 Final prompt:
 
-Build a Python script at `tools/auphonic/enhance.py` that takes one MP3 file
-path as a required CLI argument and runs it through the Auphonic Simple API.
+<self-contained prompt>
 
-Auth: read `AUPHONIC_API_KEY` from the workspace `.env`.
-Output: save `<basename>-enhanced.mp3` next to the input.
-Overwrite existing output.
-Failure: exit non-zero with a clear message for missing input, missing API key,
-or API error.
-Conventions: follow `tools/youtube/youtube.py` and use a PEP 723 uv header.
-Out of scope: batch mode, presets, GUI.
-Verify: run end-to-end against a real MP3.
+Assumptions: <only material defaults; omit when empty>
+Gaps: <only unresolved [NEEDS: ...] items; omit when empty>
 ```
 
-## Just Do It
-
-When the user says `just do it`, state assumptions once, bake them into the final prompt, then act.
+Do not solve the prompt, explain the rewrite, or offer a menu of next actions unless the user asks.

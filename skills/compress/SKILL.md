@@ -1,73 +1,49 @@
 ---
 name: compress
-description: "Simplifies skills, prompts, and agent instructions to their most basic useful form: load-bearing verbs, nouns, constraints, examples, and checks. Use when the user asks to compress, simplify, shorten, tighten, de-noop, remove noise, or trim a prompt, spec, plan, or skill file."
-user-invocable: true
-argument-hint: "<file path or pasted instruction>"
+description: "Shorten a prompt, specification, plan, skill, note, or brain dump without changing its meaning or behaviour. Use when asked to compress, shorten, simplify, tighten, remove repetition, or use fewer tokens. Preserve facts, constraints, examples, edge cases, and checks that affect the result."
 ---
 
 # Compress
 
-Simplify skills, prompts, and instructions to the smallest text that still changes agent behavior.
+Shorten the input without losing meaning.
 
-Keep load-bearing words.
-Cut noise.
-Use dense command language.
+Use this for information and instructions, not ordinary prose polishing. Use `deslop` when voice and writing quality are the main problem.
 
 ## Process
 
-1. Choose the target from `$ARGUMENTS`, a pasted instruction, or the named file.
-2. Extract the behavior contract: actions, inputs, outputs, tools, files, checks, constraints, defaults, edge cases, and stop conditions.
-3. For each sentence or bullet, run the output-change test: if removed, would the agent's output or process likely change?
-4. Delete it when the answer is no.
-5. Rewrite it when it points at a real requirement but uses vague language.
-6. Prefer load-bearing verbs: build, update, remove, keep, inspect, verify, return, skip, ask, stop, fail, retry, cite, preserve.
-7. Prefer specific nouns: file path, schema, command, tool, source, output format, test, threshold, owner, state, error, example.
-8. Preserve behavior. Do not weaken rules to make the text shorter.
-9. Cut:
-   - baseline agent virtues, such as "be thorough", "write clean code", "use good judgment", "make it easy to read", or "write a good commit message"
-   - quality adjectives without criteria, such as "robust", "polished", "detailed", "comprehensive", or "production-ready"
-   - motivational language
-   - throat-clearing, rationale, and backstory that do not alter the task
-   - restated rules
-   - overlapping instructions
-   - padding phrases
-   - obvious preamble
-   - hedging that does not change behavior
-   - examples that restate a rule without adding format or edge-case value
-10. Keep:
-   - commands and constraints
-   - concrete success checks
-   - concrete examples that show a required format or edge case
-   - file paths, exact names, identifiers, commands, and schemas
-   - instructions that came from previous failures
-   - defaults that resolve real ambiguity
-11. If asked to update a file, replace it with the simplified version. Otherwise return only the simplified instruction.
+1. Identify the purpose and intended reader or agent.
+2. Extract the required content: facts, actions, inputs, outputs, constraints, defaults, examples, edge cases, checks, and stop conditions.
+3. Remove repetition, throat-clearing, backstory, generic advice, motivational language, and structure that does not change understanding or behaviour.
+4. Replace vague phrases with a concrete instruction only when the source supports it. Otherwise cut them.
+5. Merge overlapping rules and place each fact once, where the reader needs it.
+6. Rewrite in plain words and the smallest structure that preserves the logic.
+7. Compare the result with the source. Restore anything whose removal changes the likely interpretation or outcome.
 
-## Rewrite
+## Keep
 
-Rewrite weak phrases into commands only when the context supports a concrete behavior.
-Otherwise delete them.
+- facts, numbers, names, paths, commands, schemas, and citations
+- explicit scope, priorities, and exceptions
+- requirements created by past failures
+- defaults that resolve real ambiguity
+- examples that define a format or expose an edge case
+- verification, failure behaviour, and stop conditions
+- useful voice when compressing a brain dump or note
 
-- "Be thorough" becomes "Inspect open review threads, failing checks, and linked issues before reporting ready" only when those sources are in scope.
-- "Make the commit message very detailed" becomes "Use a conventional commit subject and include a body with motivation, tests, and risk" only when that exact commit format matters.
-- "Make the implementation easy to read" becomes "Keep parsing, validation, and rendering in separate functions" only when that boundary is relevant to the change.
-- "Create a polished final answer" becomes "Report changed files and checks run" only when final-report evidence matters.
+## Cut
 
-## Output Shape
+- repeated goals, summaries, and conclusions
+- obvious preambles and narration about the document
+- baseline advice such as "be thorough" or "use good judgement"
+- adjectives such as "robust," "polished," and "production-ready" without a test
+- hedging that does not change confidence or responsibility
+- examples that merely repeat the rule
+- headings, bullets, or steps that add shape but no meaning
+- synonyms for a term already named clearly
 
-Use the simplest structure that preserves behavior:
+## Test every cut
 
-- imperative bullets for rules
-- numbered steps for required order
-- short prose for one connected idea
-- examples only for exact format or edge cases
+Ask: if this disappears, could a capable reader act differently or lose a fact, limit, decision, warning, or piece of voice?
 
-## Rules
+If no, cut it. If yes, keep it or rewrite it more clearly.
 
-- Return the simplified version only unless the user asks for commentary.
-- Merge overlapping sections.
-- State a general rule and its exception together.
-- Do not drop a rule to hit a word count.
-- Do not keep motivational or quality language unless it creates a concrete test, priority, or constraint.
-- Replace vague quality language with a behavior-changing rule only when the original intent clearly requires it.
-- If simplification changes likely agent behavior, restore the load-bearing instruction.
+Return only the compressed result unless the user asks for a summary of changes.

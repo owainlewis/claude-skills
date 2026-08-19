@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clarify"
+  short_description: "Turn rough asks into executable agent prompts"
+  default_prompt: "Use $clarify to turn this rough request into a self-contained prompt a fresh agent can execute."

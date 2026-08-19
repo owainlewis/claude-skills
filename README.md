@@ -1,74 +1,94 @@
 # Agent Skills
 
-> A small library of agent skills I use day to day. Install with one command.
+[![Validate](https://github.com/owainlewis/agent-skills/actions/workflows/validate.yml/badge.svg)](https://github.com/owainlewis/agent-skills/actions/workflows/validate.yml)
 
-## Skills
+Five skills for prompts, writing, and teaching.
 
-| Skill | What it does |
-|---|---|
-| `humanizer` | Rewrites text to remove AI tells (em dashes, "Most people don't…", significance inflation, signposting, etc.) and puts a voice back in. Runs a draft → audit → final pass. |
-| `clarify` | Turns a vague ask or half-formed plan into a clean, self-contained prompt you can run anywhere. Interviews you one question at a time with a recommended answer each time, then hands back the final prompt as the deliverable. Run it now, save it, or hand it to another agent. |
-| `prompt-enhance` | Takes a draft prompt or messy text and rewrites it into a refined, agent-ready prompt using prompt-engineering best practice: explicit scope, no contradictions, output contract, success criteria. One-shot: it improves the prompt, it doesn't interview you (that's `clarify`). |
-| `backlog-manager` | Keeps a GitHub Issues or Linear backlog tidy: classifies risk/type, marks agent-ready work, adds issue assessments, and syncs issue state with linked PRs. |
-| `email-triage` | Turns an inbox into a short ranked queue: archive noise, draft obvious replies, flag only real decisions, and keep the inbox as open loops only. |
-| `explain-visually` | Builds a responsive HTML explainer with source-grounded copy, teaching diagrams, and browser-verified layout. |
-| `compress` | Simplifies skills, prompts, and instructions to load-bearing verbs, nouns, constraints, examples, and checks. |
-| `feynman` | Explains one technical theme with mechanism-first sections, concrete examples, edge cases, and an exercise. |
-| `herdr-issue-coordinator` | **Experimental.** Sequences a batch of GitHub issues through separate Claude Code sessions, one per visible [Herdr](https://herdr.dev) tab, each with its own worktree, branch, and pull request. The coordinator owns all state and reads it from GitHub. Requires `herdr` 0.8.0+. |
-
-The software development workflow skills - `spec`, `plan`, `implement`, `task-to-pr`, `pr-to-ready`, and friends - live in [owainlewis/blueprint](https://github.com/owainlewis/blueprint).
+The repository contains five skills. Each solves a different problem and works with agents that support the Agent Skills format.
 
 ## Install
 
-```bash
+Browse the collection and choose where to install it:
+
+```sh
 npx skills@latest add owainlewis/agent-skills
 ```
 
-Installs the skills into your agent (Claude Code, Codex, Cursor, and others supported by the [`skills`](https://www.npmjs.com/package/skills) CLI). Invoke by name (`explain-visually`, `compress`) or via your agent's skill picker.
+Install one skill directly:
 
-## Update
+```sh
+npx skills@latest add owainlewis/agent-skills --skill teach
+```
 
-```bash
+Add `--global` to install for your user account instead of the current project. The CLI supports Codex, Claude Code, Cursor, and other clients that implement Agent Skills.
+
+Update installed skills with:
+
+```sh
 npx skills@latest update
 ```
 
-## Use
+## The skills
 
-In Claude Code:
+| Skill | Job | Use it for |
+|---|---|---|
+| [`deslop`](skills/deslop/SKILL.md) | Remove AI writing patterns while preserving meaning and voice. | Replies, emails, documentation, articles, lessons, scripts, and business writing. |
+| [`teach`](skills/teach/SKILL.md) | Explain how something works or teach the reader how to do it. | Course lessons, technical articles, video scripts, workshops, newsletters, and standalone guides. |
+| [`clarify`](skills/clarify/SKILL.md) | Turn a rough request into a prompt a fresh agent can execute. | Voice dumps, vague plans, incomplete tasks, and prompts that need scope or success criteria. |
+| [`compress`](skills/compress/SKILL.md) | Shorten information or instructions without losing meaning or requirements. | Prompts, specifications, plans, skills, notes, and brain dumps that cost too many tokens. |
+| [`explain-visually`](skills/explain-visually/SKILL.md) | Build a responsive HTML page with clear writing and diagrams. | Architectures, flows, changes, comparisons, state transitions, and technical concepts. |
 
-```
-/humanizer paste or path the text you want rewritten
-/clarify build a thing that does X and also Y, you know
-/prompt-enhance make this a better prompt: <paste your rough draft>
-/backlog-manager dry-run GitHub backlog for this repo
-/email-triage process my unread Gmail inbox
-/explain-visually this repo
-/compress skills/compress/SKILL.md
-/feynman agent memory
-/herdr-issue-coordinator milestone v2.1
-```
+Invoke a skill using your agent's normal syntax, such as `$teach` in Codex or `/teach` in Claude Code.
 
-`herdr-issue-coordinator` only runs inside a [Herdr](https://herdr.dev) session (`HERDR_ENV=1`) with `herdr` 0.8.0 or later. Naming it explicitly authorizes its workers to merge their own pull requests once every gate passes; an implicit match leaves them open.
+## Example prompts
 
-## Add your own skills
+```text
+Use $deslop to edit this article without losing my dry tone.
 
-Create a folder in `skills/` with a `SKILL.md`:
+Use $teach to turn these notes into a course lesson on how tool calling works.
 
-```markdown
----
-name: skill-name
-description: "When to trigger this skill"
----
+Use $clarify to turn this voice dump into a prompt for a coding agent.
 
-# Skill instructions
+Use $compress to cut this specification to the smallest version that preserves every requirement.
+
+Use $explain-visually to show how this request moves through the system.
 ```
 
-Fork the repo and point `npx skills@latest add` at your fork to install your own set.
+## How they fit together
 
-## Requirements
+Use `clarify` to write the prompt. Use `teach` to create the tutorial. Use `explain-visually` when it needs diagrams. Use `deslop` to remove AI writing patterns. Use `compress` to shorten instructions without losing requirements.
 
-- [Claude Code](https://claude.ai/code), or another agent supported by the [`skills`](https://www.npmjs.com/package/skills) CLI.
+You can use one skill alone or combine them. A typical tutorial workflow is `clarify` -> `teach` -> `deslop`. Add `explain-visually` when the tutorial needs a diagram.
+
+## Design principles
+
+- One skill, one recurring job.
+- Plain descriptions that make triggering predictable.
+- Instructions that preserve facts, constraints, and user intent.
+- Portable Markdown with no required service or framework.
+- Examples only when they define behaviour or expose an edge case.
+- Automated checks for frontmatter, metadata, links, and repository drift.
+
+## Development
+
+Each skill lives in `skills/<name>/SKILL.md` and follows the [Agent Skills specification](https://agentskills.io/specification). Codex UI metadata lives beside it in `skills/<name>/agents/openai.yaml`.
+
+Run the local checks before committing:
+
+```sh
+make validate
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the quality bar and contribution workflow.
+
+Software delivery skills such as `spec`, `plan`, `implement`, and `task-to-pr` live in [owainlewis/blueprint](https://github.com/owainlewis/blueprint).
 
 ## Credits
 
-The `humanizer` pattern catalogue is adapted from [blader/humanizer](https://github.com/blader/humanizer), which builds on Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) maintained by WikiProject AI Cleanup.
+`deslop` is adapted from Lauren Tan's [Unslop](https://github.com/cursor/plugins/blob/main/pstack/skills/unslop/SKILL.md).
+
+`teach` is informed by Lauren Tan's [Teach](https://github.com/cursor/plugins/blob/main/pstack/skills/teach/SKILL.md), rewritten here for tutorial, course, article, video, and workshop production.
+
+## License
+
+[MIT](LICENSE)
