@@ -92,3 +92,7 @@ Software delivery skills such as `spec`, `plan`, `implement`, and `task-to-pr` l
 ## License
 
 [MIT](LICENSE)
+
+## Code of Conduct
+
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
